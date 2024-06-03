@@ -19,6 +19,7 @@ function AddTask() {
         axios.post("http://localhost:3000/tasks", addTask)
             .then(() => {
                 alert("task Is Added")
+                
                 setAddTask({})
                 getTask();
             })
@@ -59,7 +60,12 @@ function AddTask() {
                 <button type="submit">Add Task</button>
             </form>
 
-            {data.map((v,i)=>{
+            {data.filter((a,b)=>{
+                if(a.category === "Personal"){
+                    return a
+                }
+            })
+            .map((v,i)=>{
                 return(
                     <>
                         <div>

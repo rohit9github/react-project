@@ -1,9 +1,10 @@
+
 import { useEffect, useState } from "react";
 import axios from "axios"
 
 
 
-function AddTask() {
+function Demo() {
 
     let [addTask, setAddTask] = useState({})
     let [data, setData] = useState([]);
@@ -31,21 +32,14 @@ function AddTask() {
     let getTask = () => {
         axios.get("http://localhost:3000/tasks")
             .then((res) => {
-                const tasks = res.data;
-                const groupedTasks = tasks.reduce((acc, task) => {
-                    const { category } = task;
-                    if (!acc[category]) {
-                        acc[category] = [];
-                    }
-                    acc[category].push(task);
-                    return acc;
-                }, {});
-                setData(groupedTasks);
+                console.log(res.data);
+                setData(res.data)
+
             })
             .catch((err) => {
                 console.log(err);
-            });
-    };
+            })
+    }
 
     useEffect(() => {
         getTask();
@@ -68,19 +62,23 @@ function AddTask() {
                 <button type="submit">Add Task</button>
             </form>
 
-            {Object.keys(data).map((category) => (
-                <div key={category} style={{display:"flex"}}>
-                    {data[category].map((task, index) => (
-                        
-                            <div key={index} style={{ backgroundColor: category === "Personal" ? "orange" : "transparent", width: "300px",height:"150px" }}>
-                                <h2>{category}</h2>
-                                <h3>Task: {task.task}</h3>
+            {data.map((v, i) => {
+
+                if(data.category === "Personal"){
+                return (
+                    <>
+
+                              <div style={{ backgroundColor: data.category === "Personal" ? "orange" : "transparent" }}>
+                                <h2>Task :- {v.task}</h2>
+                                <h2>Category :- {v.category}</h2>
                             </div>
-                       
-                    ))}
-                </div>
-            ))}
+
+
+                    </>
+                )
+            }
+            })}
         </>
     )
 }
-export default AddTask;
+export default Demo; 

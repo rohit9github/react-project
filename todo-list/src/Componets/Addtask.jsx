@@ -51,6 +51,14 @@ function AddTask() {
         getTask();
     }, [])
 
+    const categoryColors = {
+        Personal: "orange",
+        Office: "blue",
+        Family: "green",
+        Friends: "purple",
+        Other: "grey"
+    };
+
     return (
         <>
             <form onSubmit={(e) => submitTask(e)}>
@@ -69,14 +77,27 @@ function AddTask() {
             </form>
 
             {Object.keys(data).map((category) => (
-                <div key={category} style={{display:"flex"}}>
+                <div key={category} style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
                     {data[category].map((task, index) => (
-                        
-                            <div key={index} style={{ backgroundColor: category === "Personal" ? "orange" : "transparent", width: "300px",height:"150px" }}>
-                                <h2>{category}</h2>
-                                <h3>Task: {task.task}</h3>
-                            </div>
+
                        
+                           
+                                <div key={index}  style={{
+                                    backgroundColor: categoryColors[category],
+                                    width: "300px",
+                                    height: "150px",
+                                    margin: "10px",
+                                    color: "white",
+                                }}>
+                                    <h2>{category}</h2>
+                                    <h3>Task: {task.task}</h3>
+                                </div>
+                            
+                       
+
+
+
+
                     ))}
                 </div>
             ))}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 
@@ -11,19 +12,19 @@ function Navbar() {
                 <nav>
                     <ul style={{display:"flex",listStyle:"none"}}>
                         <li>
-                            <a href="javascript:void(0)" style={{display:"inline-block", marginLeft:"18px"}}>Home</a>
+                            <Link to={"/"} style={{display:"inline-block", marginLeft:"18px"}}>Home</Link>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" style={{display:"inline-block", marginLeft:"18px"}}>About</a>
+                            <Link to={"/about"} style={{display:"inline-block", marginLeft:"18px"}}>About</Link>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" style={{display:"inline-block", marginLeft:"18px"}}>Contact</a>
+                            <Link to={"/contact"} style={{display:"inline-block", marginLeft:"18px"}}>Contact</Link>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" style={{display:"inline-block", marginLeft:"18px"}}>Login</a>
+                            <Link to={"/login"} style={{display:"inline-block", marginLeft:"18px"}}>Login</Link>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" style={{display:"inline-block", marginLeft:"18px"}}>Sign-Up</a>
+                            <Link to={"/signup"} style={{display:"inline-block", marginLeft:"18px"}}>Sign-Up</Link>
                         </li>
                     </ul>
                 </nav>

@@ -38,7 +38,7 @@ function AddTask() {
         }
         else {
             alert("please fisrt login or signup")
-        navigate("/login")
+            navigate("/login")
         }
 
     }
@@ -76,20 +76,24 @@ function AddTask() {
 
     return (
         <>
-            <form onSubmit={(e) => submitTask(e)}>
-                <label htmlFor="">Enter Your Task :- </label>
-                <input type="text" name="task" value={addTask.task ? addTask.task : ""} placeholder="Enter Your Task" onChange={(e) => getValue(e)} /> <br /><br />
-                <label htmlFor="">Select Category :- </label>
-                <select name="category" value={addTask.category ? addTask.category : ""} id="" onChange={(e) => getValue(e)}>
-                    <option value="">selecet</option>
-                    <option value="Personal">Personal</option>
-                    <option value="Office">Office</option>
-                    <option value="Family">Family</option>
-                    <option value="Friends">Friends</option>
-                    <option value="Other">Other</option>
-                </select> <br /><br />
-                <button type="submit">Add Task</button>
-            </form>
+            <div className="flex justify-center mt-10">
+            <div className="px-10 rounded-2xl shadow-gray-300 shadow-xl">
+                <form onSubmit={(e) => submitTask(e)}>
+                    <label className="mb-3 inline-block text-xl">Enter Your Task :- </label>
+                    <input className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" type="text" name="task" value={addTask.task ? addTask.task : ""} placeholder="Enter Your Task" onChange={(e) => getValue(e)} /> <br /><br />
+                    <label className="mb-3 inline-block text-xl">Select Category :- </label>
+                    <select className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" name="category" value={addTask.category ? addTask.category : ""} id="" onChange={(e) => getValue(e)}>
+                        <option value="">selecet</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Office">Office</option>
+                        <option value="Family">Family</option>
+                        <option value="Friends">Friends</option>
+                        <option value="Other">Other</option>
+                    </select> <br /><br />
+                    <button type="submit" className="inline-block my-10 bg-blue-500 text-white rounded-md px-7 py-2 text-xl">Add Task</button>
+                </form>
+            </div>
+            </div>
 
             {Object.keys(data).map((category) => (
                 <div key={category} style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>

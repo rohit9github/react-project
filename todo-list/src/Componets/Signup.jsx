@@ -18,10 +18,10 @@ function Signup() {
 
     let handleSubmit = (e) => {
         e.preventDefault();
-        let finData = user.find((v)=>{
-            return v.email === signUpdata.email && v.pass ===  signUpdata.pass;
-            })
-            if (finData) {
+        let finData = user.find((v) => {
+            return v.email === signUpdata.email && v.pass === signUpdata.pass;
+        })
+        if (finData) {
             alert("login Successfully")
             navigate("/")
         }
@@ -44,15 +44,19 @@ function Signup() {
 
     return (
         <>
-            <h1>Sign-Up Form</h1>
 
-            <form method="post" onSubmit={(e) => handleSubmit(e)}>
-                <label htmlFor="">Email :- </label>
-                <input type="text" name="email" placeholder="Enter Your Email" onChange={(e) => handleValue(e)} /> <br /><br />
-                <label htmlFor="">Password :- </label>
-                <input type="text" name="pass" placeholder="Enter Your Password" onChange={(e) => handleValue(e)} /> <br /><br />
-                <button type="submit">Sign-Up</button>
-            </form>
+            <div className="flex justify-center items-center h-screen">
+                <div className="px-10 rounded-2xl shadow-gray-300 shadow-xl">
+                    <form method="post" onSubmit={(e) => handleSubmit(e)}>
+                        <h1 className="text-center text-3xl mb-10">Sign-Up Form</h1>
+                        <label className="mb-3 inline-block text-xl">Email :- </label>
+                        <input className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" type="text" name="email" placeholder="Enter Your Email" onChange={(e) => handleValue(e)} /> <br /><br />
+                        <label className="mb-3 inline-block text-xl">Password :- </label>
+                        <input className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" type="text" name="pass" placeholder="Enter Your Password" onChange={(e) => handleValue(e)} /> <br /><br />
+                        <button type="submit" className="inline-block my-10 bg-blue-500 text-white rounded-md px-7 py-2 text-xl">Sign-Up</button>
+                    </form>
+                </div>
+            </div>
         </>
     )
 }

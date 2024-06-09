@@ -26,17 +26,21 @@ function Login() {
 
     return (
         <>
-            <h1>Login Form</h1>
 
-            <form method="post" onSubmit={(e) => handleSubmit(e)}>
-                <label htmlFor="">UserName :- </label>
-                <input type="text" name="username" value={userData.username?userData.username:""} placeholder="Enter Your Username" onChange={(e) => getInputValue(e)} /><br /><br />
-                <label htmlFor="">Email :- </label>
-                <input type="text" name="email" value={userData.email?userData.email:""} placeholder="Enter Your Email" onChange={(e) => getInputValue(e)} /><br /><br />
-                <label htmlFor="">Password :- </label>
-                <input type="text" name="pass" value={userData.pass?userData.pass:""} placeholder="Enter Your Password" onChange={(e) => getInputValue(e)} /><br /><br />
-                <button type="submit">Login</button>
-            </form>
+            <div className="flex justify-center items-center h-screen">
+                <div className="px-10 rounded-2xl shadow-gray-300 shadow-xl">
+                    <form method="post" className="mt-6" onSubmit={(e) => handleSubmit(e)}>
+                        <h1 className="text-center text-3xl mb-10">Login Form</h1>
+                        <label className="mb-3 inline-block text-xl">UserName :- </label>
+                        <input className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" type="text" name="username" value={userData.username ? userData.username : ""} placeholder="Enter Your Username" onChange={(e) => getInputValue(e)} /><br /><br />
+                        <label className="mb-3 inline-block text-xl">Email :- </label>
+                        <input className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" type="text" name="email" value={userData.email ? userData.email : ""} placeholder="Enter Your Email" onChange={(e) => getInputValue(e)} /><br /><br />
+                        <label className="mb-3 inline-block text-xl">Password :- </label>
+                        <input className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" type="text" name="pass" value={userData.pass ? userData.pass : ""} placeholder="Enter Your Password" onChange={(e) => getInputValue(e)} /><br /><br />
+                        <button type="submit" className="inline-block my-10 bg-blue-500 text-white rounded-md px-7 py-2 text-xl">Login</button>
+                    </form>
+                </div>
+            </div>
 
         </>
     )

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -7,6 +8,13 @@ function AddTask() {
 
     let [addTask, setAddTask] = useState({})
     let [data, setData] = useState([]);
+    let isAuth = () => {
+        return axios.get("http://localhost:3000/users", {
+            users: []
+        })
+    }
+
+    let navigate = useNavigate()
 
     let getValue = (e) => {
         let name = e.target.name;
@@ -16,16 +24,23 @@ function AddTask() {
 
     let submitTask = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:3000/tasks", addTask)
-            .then(() => {
-                alert("task Is Added")
+        if (isAuth() === true) {
 
-                setAddTask({})
-                getTask();
-            })
-            .catch(() => {
-                alert("something is wrong");
-            })
+            axios.post("http://localhost:3000/tasks", addTask)
+                .then(() => {
+                    alert("task Is Added")
+                    setAddTask({})
+                    getTask();
+                })
+                .catch(() => {
+                    alert("something is wrong");
+                })
+        }
+        else {
+            alert("please fisrt login or signup")
+        navigate("/login")
+        }
+
     }
 
     let getTask = () => {
@@ -80,20 +95,20 @@ function AddTask() {
                 <div key={category} style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
                     {data[category].map((task, index) => (
 
-                       
-                           
-                                <div key={index}  style={{
-                                    backgroundColor: categoryColors[category],
-                                    width: "300px",
-                                    height: "150px",
-                                    margin: "10px",
-                                    color: "white",
-                                }}>
-                                    <h2>{category}</h2>
-                                    <h3>Task: {task.task}</h3>
-                                </div>
-                            
-                       
+
+
+                        <div key={index} style={{
+                            backgroundColor: categoryColors[category],
+                            width: "300px",
+                            height: "150px",
+                            margin: "10px",
+                            color: "white",
+                        }}>
+                            <h2>{category}</h2>
+                            <h3>Task: {task.task}</h3>
+                        </div>
+
+
 
 
 

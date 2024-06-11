@@ -28,6 +28,9 @@ function Navbar() {
                                 <li>
                                     <Link to={"/signup"} style={{ display: "inline-block", marginLeft: "18px" }}>Sign-Up</Link>
                                 </li>
+                                <li>
+                                    <Link to={"/demo"} style={{ display: "inline-block", marginLeft: "18px" }}>Demo</Link>
+                                </li>
                             </ul>
                         </nav>
                     </div>

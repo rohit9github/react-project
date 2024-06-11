@@ -8,11 +8,15 @@ function AddTask() {
 
     let [addTask, setAddTask] = useState({})
     let [data, setData] = useState([]);
+    let [comTask, setComTask] = useState([])
 
-    let isAuth = () => {
-        return axios.get("http://localhost:3000/users", {
-            users: []
-        })
+    let isAuth = async () => {
+        try {
+            let response = await axios.get("http://localhost:3000/users");
+            return response.data.length > 0;
+        } catch {
+            return false;
+        }
     }
 
     let navigate = useNavigate()
@@ -32,6 +36,7 @@ function AddTask() {
                     alert("task Is Added")
                     setAddTask({})
                     getTask();
+                    
                 })
                 .catch(() => {
                     alert("something is wrong");
@@ -47,7 +52,7 @@ function AddTask() {
     let getTask = () => {
         axios.get("http://localhost:3000/tasks")
             .then((res) => {
-                const tasks = res.data;
+                const tasks = res.data.filter(task => !task.completed);
                 const groupedTasks = tasks.reduce((acc, task) => {
                     const { category } = task;
                     if (!acc[category]) {
@@ -65,7 +70,7 @@ function AddTask() {
 
     useEffect(() => {
         getTask();
-        
+        isAuth()
     }, [])
 
     const categoryColors = {
@@ -88,7 +93,7 @@ function AddTask() {
     };
 
     
-    
+
 
     return (
         <>
@@ -133,6 +138,19 @@ function AddTask() {
                     ))}
                 </div>
             ))}
+
+            <h2 className="text-5xl text-center my-14">Completed Task</h2>
+
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+                {comTask.map((v, i) => {
+                    return (
+                        <div key={i} style={{ backgroundColor: "green", width: "300px", height: "150px", margin: "10px", color: "white", textAlign: "center" }}>
+                            <h2>{v.category}</h2>
+                            <h3>Task: {v.task}</h3>
+                        </div>
+                    )
+                })}
+            </div>
         </>
     )
 }

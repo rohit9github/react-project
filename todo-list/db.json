@@ -19,7 +19,8 @@
     {
       "id": "492b",
       "task": "rohit",
-      "category": "Family"
+      "category": "Family",
+      "completed": true
     },
     {
       "id": "0447",
@@ -43,17 +44,20 @@
     {
       "id": "8e6b",
       "task": "ffffffffd",
-      "category": "Personal"
+      "category": "Personal",
+      "completed": false
     },
     {
       "id": "7805",
       "category": "Personal",
-      "task": "sdff"
+      "task": "sdff",
+      "completed": false
     },
     {
       "id": "be65",
       "task": "rohit",
-      "category": "Personal"
+      "category": "Personal",
+      "completed": true
     },
     {
       "id": "36ee",
@@ -63,7 +67,8 @@
     {
       "id": "6e15",
       "category": "Family",
-      "task": "Adsad"
+      "task": "Adsad",
+      "completed": true
     }
   ]
 }

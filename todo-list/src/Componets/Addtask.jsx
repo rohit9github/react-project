@@ -8,7 +8,6 @@ function AddTask() {
 
     let [addTask, setAddTask] = useState({})
     let [data, setData] = useState([]);
-    let [comTask, setComTask] = useState([])
 
     let isAuth = async () => {
         try {
@@ -35,7 +34,7 @@ function AddTask() {
                     alert("task Is Added")
                     setAddTask({})
                     getTask();
-                    
+
                 })
                 .catch(() => {
                     alert("something is wrong");
@@ -91,7 +90,7 @@ function AddTask() {
             });
     };
 
-    
+
 
 
     return (
@@ -137,19 +136,6 @@ function AddTask() {
                     ))}
                 </div>
             ))}
-
-            <h2 className="text-5xl text-center my-14">Completed Task</h2>
-
-            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-                {comTask.map((v, i) => {
-                    return (
-                        <div key={i} style={{ backgroundColor: "green", width: "300px", height: "150px", margin: "10px", color: "white", textAlign: "center" }}>
-                            <h2>{v.category}</h2>
-                            <h3>Task: {v.task}</h3>
-                        </div>
-                    )
-                })}
-            </div>
         </>
     )
 }

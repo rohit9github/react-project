@@ -17,7 +17,7 @@ function Navbar() {
                                     <Link to={"/"} style={{ display: "inline-block", marginLeft: "18px" }}>Home</Link>
                                 </li>
                                 <li>
-                                    <Link to={"/about"} style={{ display: "inline-block", marginLeft: "18px" }}>About</Link>
+                                    <Link to={"/view"} style={{ display: "inline-block", marginLeft: "18px" }}>View</Link>
                                 </li>
                                 <li>
                                     <Link to={"/contact"} style={{ display: "inline-block", marginLeft: "18px" }}>Contact</Link>

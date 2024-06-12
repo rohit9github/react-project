@@ -23,7 +23,8 @@
     {
       "id": "574b",
       "task": "ffffffffd",
-      "category": "Office"
+      "category": "Office",
+      "completed": true
     },
     {
       "id": "b253",

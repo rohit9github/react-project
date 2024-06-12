@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 
-function About() {
+function ViewCompletedTask() {
 
     let [completedTasks, setCompletedTasks] = useState([]);
 
@@ -33,23 +33,23 @@ function About() {
     return (
         <>
             <h1>View</h1>
-            <div className="flex">
+            <div className="flex justify-center">
                 {completedTasks.map((v, index) => {
                     if (v.completed === true) {
-                        return(
+                        return (
                             <div key={index} style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
-                            <div style={{
-                                backgroundColor: "green",
-                                width: "300px",
-                                height: "150px",
-                                margin: "10px",
-                                color: "white",
-                                textAlign: "center"
-                            }}>
-                                <h2>Category : {v.category}</h2>
-                                <h3>Task : {v.task}</h3>
+                                <div className="bg-green-500" style={{
+
+                                    width: "300px",
+                                    height: "150px",
+                                    margin: "10px",
+                                    color: "white",
+                                    textAlign: "center"
+                                }}>
+                                    <h2>Category : {v.category}</h2>
+                                    <h3>Task : {v.task}</h3>
+                                </div>
                             </div>
-                        </div>
                         )
                     }
 
@@ -59,4 +59,4 @@ function About() {
     )
 }
 
-export default About;
+export default ViewCompletedTask;

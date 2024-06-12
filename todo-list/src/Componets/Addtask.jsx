@@ -27,10 +27,9 @@ function AddTask() {
         setAddTask({ ...addTask, [name]: value })
     }
 
-    let submitTask = (e) => {
+    let submitTask = async (e) => {
         e.preventDefault();
-        if (isAuth() === true) {
-
+        if (await isAuth()) {
             axios.post("http://localhost:3000/tasks", addTask)
                 .then(() => {
                     alert("task Is Added")

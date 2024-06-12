@@ -1,91 +1,34 @@
 {
   "users": [
     {
-      "id": "4fd3"
-    },
-    {
-      "id": "6254",
+      "id": "9436",
       "username": "ddd",
-      "email": "gohilrohit309@gmail.com",
-      "pass": "RCg123##2"
-    },
-    {
-      "id": "b7d7",
-      "username": "rohit",
       "email": "d@gmail.com",
       "pass": "RCg123##2"
     }
   ],
   "tasks": [
     {
-      "id": "52d0",
-      "task": "ffffffffd",
-      "category": "Personal",
-      "completed": true
-    },
-    {
-      "id": "3abe",
-      "task": "sa",
-      "category": "Family"
-    },
-    {
-      "id": "45ea",
-      "task": "dd",
-      "category": "Office"
-    },
-    {
-      "id": "492b",
-      "task": "rohit",
-      "category": "Family",
-      "completed": true
-    },
-    {
-      "id": "0447",
-      "task": "rohit",
-      "category": "Friends"
-    },
-    {
-      "id": "8e9d",
+      "id": "427d",
+      "task": "Complete Work from office",
       "category": "Office",
-      "task": "sfsf"
+      "completed": true
     },
     {
-      "id": "2d98",
+      "id": "f301",
+      "task": "reading time",
+      "category": "Personal",
+      "completed": true
+    },
+    {
+      "id": "574b",
+      "task": "ffffffffd",
       "category": "Office"
     },
     {
-      "id": "3d23",
-      "category": "Other",
-      "task": "add",
-      "completed": false
-    },
-    {
-      "id": "8e6b",
-      "task": "ffffffffd",
-      "category": "Personal",
-      "completed": false
-    },
-    {
-      "id": "7805",
-      "category": "Personal",
-      "task": "sdff",
-      "completed": true
-    },
-    {
-      "id": "be65",
-      "task": "rohit",
-      "category": "Personal",
-      "completed": true
-    },
-    {
-      "id": "36ee",
+      "id": "b253",
+      "task": "ddd",
       "category": "Friends",
-      "task": "Complete Work from office"
-    },
-    {
-      "id": "6e15",
-      "category": "Family",
-      "task": "Adsad",
       "completed": true
     }
   ]

@@ -7,7 +7,7 @@ function About() {
     let [completedTasks, setCompletedTasks] = useState([]);
 
     let getCompletedTasks = () => {
-        axios.get("http://localhost:3000/tasks?completed=true")
+        axios.get(`http://localhost:3000/tasks?completed=true`)
             .then((res) => {
                 setCompletedTasks(res.data);
             })
@@ -19,6 +19,8 @@ function About() {
     useEffect(() => {
         getCompletedTasks();
     }, []);
+
+    console.log(completedTasks);
 
     const categoryColors = {
         Personal: "orange",
@@ -32,21 +34,26 @@ function About() {
         <>
             <h1>View</h1>
             <div className="flex">
-            {completedTasks.map((task, index) => (
-                <div key={index} style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
-                    <div style={{
-                        backgroundColor: "green",
-                        width: "300px",
-                        height: "150px",
-                        margin: "10px",
-                        color: "white",
-                        textAlign: "center"
-                    }}>
-                        <h2>{task.category}</h2>
-                        <h3>Task: {task.task}</h3>
-                    </div>
-                </div>
-            ))}
+                {completedTasks.map((v, index) => {
+                    if (v.completed === true) {
+                        return(
+                            <div key={index} style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
+                            <div style={{
+                                backgroundColor: "green",
+                                width: "300px",
+                                height: "150px",
+                                margin: "10px",
+                                color: "white",
+                                textAlign: "center"
+                            }}>
+                                <h2>Category : {v.category}</h2>
+                                <h3>Task : {v.task}</h3>
+                            </div>
+                        </div>
+                        )
+                    }
+
+                })}
             </div>
         </>
     )

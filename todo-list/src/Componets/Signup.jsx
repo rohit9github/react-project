@@ -18,10 +18,9 @@ function Signup() {
 
     let handleSubmit = (e) => {
         e.preventDefault();
-        let finData = user.find((v) => {
-            return v.email === signUpdata.email && v.pass === signUpdata.pass;
-        })
-        if (finData) {
+        
+        let getUser =JSON.parse( localStorage.getItem("Userdata"));
+        if (getUser.email === signUpdata.email && getUser.email === signUpdata.email) {
             alert("login Successfully")
             navigate("/")
         }
@@ -30,17 +29,6 @@ function Signup() {
         }
 
     }
-
-
-    let getData = () => {
-        axios.get("http://localhost:3000/users")
-            .then((res) => {
-                setUser(res.data)
-            })
-    }
-    useEffect(() => {
-        getData();
-    }, [])
 
     return (
         <>

@@ -14,14 +14,16 @@ function Login() {
 
     let handleSubmit = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:3000/users", userData)
-            .then(() => {
-                alert("data is added");
-                setUserData({})
-            })
-            .catch(() => {
-                console.log("error something is gone wrong");
-            })
+        // axios.post("http://localhost:3000/users", userData)
+        //     .then(() => {
+        //         alert("data is added");
+        //     })
+        //     .catch(() => {
+        //         console.log("error something is gone wrong");
+        //     })
+        localStorage.setItem("Userdata", JSON.stringify(userData));
+        setUserData({})
+
     }
 
     return (

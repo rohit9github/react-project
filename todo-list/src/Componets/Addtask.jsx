@@ -9,13 +9,16 @@ function AddTask() {
     let [addTask, setAddTask] = useState({})
     let [data, setData] = useState([]);
 
-    let isAuth = async () => {
-        try {
-            let response = await axios.get("http://localhost:3000/users");
-            return response.data.length > 0;
-        } catch {
-            return false;
-        }
+    let isAuth = () => {
+        // try {
+        //     let response = await axios.get("http://localhost:3000/users");
+        //     return response.data.length > 0;
+        // } catch {
+        //     return false;
+        // }
+
+        let user = localStorage.getItem("Userdata")
+        return user !== null;
     }
 
     let navigate = useNavigate()

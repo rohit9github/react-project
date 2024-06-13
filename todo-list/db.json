@@ -1,12 +1,4 @@
 {
-  "users": [
-    {
-      "id": "9436",
-      "username": "ddd",
-      "email": "d@gmail.com",
-      "pass": "RCg123##2"
-    }
-  ],
   "tasks": [
     {
       "id": "427d",
@@ -31,6 +23,17 @@
       "task": "ddd",
       "category": "Friends",
       "completed": true
+    },
+    {
+      "id": "e840",
+      "task": "ffffffffd",
+      "category": "Personal"
+    },
+    {
+      "id": "2f9f"
+    },
+    {
+      "id": "3773"
     }
   ]
 }

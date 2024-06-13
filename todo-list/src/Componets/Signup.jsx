@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Signup() {
 
@@ -52,6 +53,9 @@ function Signup() {
             localStorage.setItem("Userdata", JSON.stringify(userData));
             setUserData({})
             setError({})
+            toast.success("Sign-Up Successfully",{
+                position: "top-center",
+            })
         }
 
 
@@ -79,7 +83,7 @@ function Signup() {
                 </div>
             </div>
 
-
+<ToastContainer/>
 
         </>
     )

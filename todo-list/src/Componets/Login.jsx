@@ -14,8 +14,8 @@ function Login() {
         let name = e.target.name;
         let value = e.target.value;
         setLoginData({ ...loginData, [name]: value });
-        if(name == "email"){
-            if(value == ""){
+        if(name === "email"){
+            if(value === ""){
                 setError({...error,emailError:"Email is Required"});
             }
             else{
@@ -39,12 +39,7 @@ function Login() {
         if (loginData.email === undefined){
             setError({...error,emailError:"Email is Required"});
         }
-        else if(getUser.email !== loginData.email){
-            setError({...error,emailError:"Email is Not Register"});
-        }
-        else if(getUser.pass !== loginData.pass){
-            setError({...error,passError :"Password is not Register"})
-        }
+        
         else if(loginData.pass === undefined){
             setError({...error,passError:"Password is Required"});
         }
@@ -54,11 +49,17 @@ function Login() {
                 navigate("/")
             }
             else {
-                alert("Please first Sign-up")
+                if(getUser.email !== loginData.email && getUser.pass !== loginData.pass){
+                    alert("Please first Sign-up")
+                }
+                else if(getUser.email !== loginData.email){
+                    setError({...error,emailError:"Email is Incorrect"});
+                }
+                else if(getUser.pass !== loginData.pass){
+                    setError({...error,passError :"Password is Incorrect"})
+                } 
             }
         }
-        
-
     }
 
     return (

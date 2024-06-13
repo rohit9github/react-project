@@ -32,7 +32,7 @@ function ViewCompletedTask() {
 
     return (
         <>
-            <h1>View</h1>
+            <h1 className="text-center text-5xl font-medium mt-8">Completed Task</h1>
             <div className="flex justify-center">
                 {completedTasks.map((v, index) => {
                     if (v.completed === true) {

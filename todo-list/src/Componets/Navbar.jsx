@@ -23,14 +23,14 @@ function Navbar() {
                                     <Link to={"/contact"} style={{ display: "inline-block", marginLeft: "18px" }}>Contact</Link>
                                 </li>
                                 <li>
+                                    <Link to={"/signup"} style={{ display: "inline-block", marginLeft: "18px" }}>SignUp</Link>
+                                </li>
+                                <li>
                                     <Link to={"/login"} style={{ display: "inline-block", marginLeft: "18px" }}>Login</Link>
                                 </li>
-                                <li>
-                                    <Link to={"/signup"} style={{ display: "inline-block", marginLeft: "18px" }}>Sign-Up</Link>
-                                </li>
-                                <li>
+                                {/* <li>
                                     <Link to={"/demo"} style={{ display: "inline-block", marginLeft: "18px" }}>Demo</Link>
-                                </li>
+                                </li> */}
                             </ul>
                         </nav>
                     </div>

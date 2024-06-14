@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { BiEdit } from "react-icons/bi";
 
 
 function AddTask() {
@@ -29,10 +32,9 @@ function AddTask() {
             if (await isAuth()) {
                 axios.post("http://localhost:3000/tasks", addTask)
                     .then(() => {
-                        alert("task Is Added")
                         setAddTask({})
                         getTask();
-
+                        toast.success("Task Is Added")
                     })
                     .catch(() => {
                         alert("something is wrong");
@@ -46,7 +48,7 @@ function AddTask() {
         else {
             axios.put(`http://localhost:3000/tasks/${id}`, addTask)
                 .then(() => {
-                    alert("task Is Updated")
+                    toast.success("Task Is Updated")
                     setAddTask({})
                     getTask();
                     setId(0);
@@ -61,14 +63,14 @@ function AddTask() {
         axios.get("http://localhost:3000/tasks")
             .then((res) => {
                 const tasks = res.data.filter(task => !task.completed);
-                
+
                 const groupedTasks = tasks.reduce((acc, task) => {
                     let { category } = task;
                     if (!acc[category]) {
                         acc[category] = [];
                     }
                     acc[category].push(task);
-                    
+
                     return acc;
                 }, {});
                 setDd(groupedTasks);
@@ -85,11 +87,11 @@ function AddTask() {
     }, [])
 
     const categoryColors = {
-        Personal: "orange",
-        Office: "blue",
-        Family: "skyblue",
-        Friends: "purple",
-        Other: "grey"
+        Personal: "#FF8A08",
+        Office: "#1679AB",
+        Family: "#FFA62F",
+        Friends: "#FF0000",
+        Other: "#97BE5A"
     };
 
     const handleCheckboxChange = (task) => {
@@ -97,6 +99,9 @@ function AddTask() {
         axios.put(`http://localhost:3000/tasks/${task.id}`, updatedTask)
             .then(() => {
                 getTask();
+                toast.success("Task Is Completed", {
+                    position: "top-center"
+                })
             })
             .catch((err) => {
                 console.log(err);
@@ -106,12 +111,13 @@ function AddTask() {
     let deleteTask = (id) => {
         axios.delete(`http://localhost:3000/tasks/${id}`)
             .then(() => {
+                toast.success("Task Is Deleted");
                 return getTask();
             })
     }
 
     let updateTask = (task) => {
-        
+
         setAddTask(task)
         setId(task.id)
     }
@@ -137,27 +143,26 @@ function AddTask() {
                     </form>
                 </div>
             </div>
-
-            {Object.keys(dd).map((category) => (
-                <div key={category} style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
-                    {dd[category].map((task, index) => (
-                        <div key={index} style={{
-                            backgroundColor: task.completed ? "green" : categoryColors[category],
-                            width: "300px",
-                            height: "150px",
-                            margin: "10px",
-                            color: "white",
-                            textAlign: "center"
-                        }}>
-                            <h2>{category}</h2>
-                            <h3>Task: {task.task}</h3>
-                            <input type="checkbox" checked={task.completed || false} onChange={() => handleCheckboxChange(task)} /> <br />
-                            <button type="button" onClick={() => deleteTask(task.id)} className="bg-slate-500 px-7 py-1" >Delete</button> <br />
-                            <button type="button" onClick={() => updateTask(task)} className="bg-slate-500 px-7 py-1 mt-2">Update</button>
-                        </div>
-                    ))}
-                </div>
-            ))}
+            <div className="max-w-7xl mx-auto px-7">
+                {Object.keys(dd).map((category) => (
+                    <div key={category} className="flex justify-center mt-12 flex-col">
+                        {dd[category].map((task, index) => (
+                            <div key={index} className="m-2 text-center rounded-xl px-5 py-3 text-white flex items-center justify-between" style={{ backgroundColor: task.completed ? "green" : categoryColors[category] }}>
+                                <div className="">
+                                    <h2 className="text-xl font-normal text-start">Category :- {category}</h2>
+                                    <h3 className="text-2xl font-semibold text-start">Task: {task.task}</h3>
+                                </div>
+                                <div className="flex">
+                                    <input type="checkbox" className="me-3 border-none w-5" checked={task.completed || false} onChange={() => handleCheckboxChange(task)} /> <br />
+                                    <button type="button" onClick={() => deleteTask(task.id)} className="text-3xl me-3 " ><RiDeleteBin6Line /></button> <br />
+                                    <button type="button" onClick={() => updateTask(task)} className="text-3xl me-3 "><BiEdit /></button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </div>
+            <ToastContainer />
         </>
     )
 }

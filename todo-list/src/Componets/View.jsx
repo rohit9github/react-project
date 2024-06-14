@@ -22,32 +22,17 @@ function ViewCompletedTask() {
 
     console.log(completedTasks);
 
-    const categoryColors = {
-        Personal: "orange",
-        Office: "blue",
-        Family: "skyblue",
-        Friends: "purple",
-        Other: "grey"
-    };
-
     return (
         <>
             <h1 className="text-center text-5xl font-medium mt-8">Completed Task</h1>
-            <div className="flex justify-center">
+            <div className="max-w-7xl mx-auto">
                 {completedTasks.map((v, index) => {
                     if (v.completed === true) {
                         return (
-                            <div key={index} style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
-                                <div className="bg-green-500" style={{
-
-                                    width: "300px",
-                                    height: "150px",
-                                    margin: "10px",
-                                    color: "white",
-                                    textAlign: "center"
-                                }}>
-                                    <h2>Category : {v.category}</h2>
-                                    <h3>Task : {v.task}</h3>
+                            <div key={index} style={{  marginTop: "50px" }}>
+                                <div className="text-white text-center m-2 px-6 rounded-xl py-3" style={{backgroundColor:"#41B06E" }}>
+                                    <h2 className="text-xl font-medium text-start">Category : {v.category}</h2>
+                                    <h3 className="text-2xl font-semibold text-start">Task : {v.task}</h3>
                                 </div>
                             </div>
                         )

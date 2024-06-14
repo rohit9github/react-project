@@ -11,6 +11,11 @@
       "task": "reading time",
       "category": "Personal",
       "completed": true
+    },
+    {
+      "id": "8ebe",
+      "task": "Complete Work from offices",
+      "category": "Personal"
     }
   ]
 }

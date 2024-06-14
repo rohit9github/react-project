@@ -7,16 +7,10 @@ import { useNavigate } from "react-router-dom";
 function AddTask() {
 
     let [addTask, setAddTask] = useState({})
-    let [data, setData] = useState([]);
+    let [dd, setDd] = useState([]);
+    let [id, setId] = useState(0);
 
     let isAuth = () => {
-        // try {
-        //     let response = await axios.get("http://localhost:3000/users");
-        //     return response.data.length > 0;
-        // } catch {
-        //     return false;
-        // }
-
         let user = localStorage.getItem("Userdata")
         return user !== null;
     }
@@ -31,22 +25,35 @@ function AddTask() {
 
     let submitTask = async (e) => {
         e.preventDefault();
-        if (await isAuth()) {
-            axios.post("http://localhost:3000/tasks", addTask)
-                .then(() => {
-                    alert("task Is Added")
-                    setAddTask({})
-                    getTask();
+        if (id === 0) {
+            if (await isAuth()) {
+                axios.post("http://localhost:3000/tasks", addTask)
+                    .then(() => {
+                        alert("task Is Added")
+                        setAddTask({})
+                        getTask();
 
-                })
-                .catch(() => {
-                    alert("something is wrong");
-                })
+                    })
+                    .catch(() => {
+                        alert("something is wrong");
+                    })
+            }
+            else {
+                alert("please fisrt login or signup")
+                navigate("/login")
+            }
         }
         else {
-            alert("please fisrt login or signup")
-            navigate("/login")
+            axios.put(`http://localhost:3000/tasks/${id}`, addTask)
+                .then(() => {
+                    alert("task Is Updated")
+                    setAddTask({})
+                    getTask();
+                    setId(0);
+                })
         }
+
+
 
     }
 
@@ -54,15 +61,18 @@ function AddTask() {
         axios.get("http://localhost:3000/tasks")
             .then((res) => {
                 const tasks = res.data.filter(task => !task.completed);
+                
                 const groupedTasks = tasks.reduce((acc, task) => {
-                    const { category } = task;
+                    let { category } = task;
                     if (!acc[category]) {
                         acc[category] = [];
                     }
                     acc[category].push(task);
+                    
                     return acc;
                 }, {});
-                setData(groupedTasks);
+                setDd(groupedTasks);
+                console.log(groupedTasks.acc)
             })
             .catch((err) => {
                 console.log(err);
@@ -93,7 +103,18 @@ function AddTask() {
             });
     };
 
+    let deleteTask = (id) => {
+        axios.delete(`http://localhost:3000/tasks/${id}`)
+            .then(() => {
+                return getTask();
+            })
+    }
 
+    let updateTask = (task) => {
+        
+        setAddTask(task)
+        setId(task.id)
+    }
 
 
     return (
@@ -104,7 +125,7 @@ function AddTask() {
                         <label className="mb-3 inline-block text-xl">Enter Your Task :- </label>
                         <input className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" type="text" name="task" value={addTask.task ? addTask.task : ""} placeholder="Enter Your Task" onChange={(e) => getValue(e)} /> <br /><br />
                         <label className="mb-3 inline-block text-xl">Select Category :- </label>
-                        <select className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" name="category" value={addTask.category ? addTask.category : ""} id="" onChange={(e) => getValue(e)}>
+                        <select className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" name="category" value={addTask.category ? addTask.category : ""} onChange={(e) => getValue(e)}>
                             <option value="">selecet</option>
                             <option value="Personal">Personal</option>
                             <option value="Office">Office</option>
@@ -112,14 +133,14 @@ function AddTask() {
                             <option value="Friends">Friends</option>
                             <option value="Other">Other</option>
                         </select> <br /><br />
-                        <button type="submit" className="inline-block my-10 bg-blue-500 text-white rounded-md px-7 py-2 text-xl">Add Task</button>
+                        <button type="submit" className="inline-block my-10 bg-blue-500 text-white rounded-md px-7 py-2 text-xl">{id === 0 ? "Add task" : "Update Task"}</button>
                     </form>
                 </div>
             </div>
 
-            {Object.keys(data).map((category) => (
+            {Object.keys(dd).map((category) => (
                 <div key={category} style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
-                    {data[category].map((task, index) => (
+                    {dd[category].map((task, index) => (
                         <div key={index} style={{
                             backgroundColor: task.completed ? "green" : categoryColors[category],
                             width: "300px",
@@ -130,11 +151,9 @@ function AddTask() {
                         }}>
                             <h2>{category}</h2>
                             <h3>Task: {task.task}</h3>
-                            <input
-                                type="checkbox"
-                                checked={task.completed || false}
-                                onChange={() => handleCheckboxChange(task)}
-                            />
+                            <input type="checkbox" checked={task.completed || false} onChange={() => handleCheckboxChange(task)} /> <br />
+                            <button type="button" onClick={() => deleteTask(task.id)} className="bg-slate-500 px-7 py-1" >Delete</button> <br />
+                            <button type="button" onClick={() => updateTask(task)} className="bg-slate-500 px-7 py-1 mt-2">Update</button>
                         </div>
                     ))}
                 </div>

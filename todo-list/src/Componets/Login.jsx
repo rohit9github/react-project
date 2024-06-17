@@ -75,7 +75,7 @@ function Login() {
                         <label className="mb-3 inline-block text-xl">Password :- </label>
                         <input className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" type="text" name="pass" placeholder="Enter Your Password" onChange={(e) => handleValue(e)} /> <br /><br />
                         <span className="text-red-500">{error.passError ? error.passError:""}</span><br />
-                        <button type="submit" className="inline-block my-10 bg-blue-500 text-white rounded-md px-7 py-2 text-xl">Login</button>
+                        <button type="submit" className="inline-block my-5 bg-blue-500 text-white rounded-md px-7 py-2 text-xl">Login</button>
                     </form>
                 </div>
             </div>

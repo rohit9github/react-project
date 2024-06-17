@@ -29,6 +29,9 @@ function AddTask() {
             if (value === "") {
                 setError({ ...error, taskError: "Please Add Your Task" });
             }
+            else if(value.length < 5){
+                setError({...error,taskError:"Task is too short"});
+            }
             else {
                 setError({ ...error, taskError: "" });
             }
@@ -47,6 +50,9 @@ function AddTask() {
         e.preventDefault();
         if (addTask.task === undefined) {
             setError({ ...error, taskError: "Please Add Your Task" });
+        }
+        else if(addTask.task.length < 5){
+            setError({...error,taskError:"Task is too short"});
         }
         else if (addTask.category === undefined) {
             setError({ ...error, categoryError: "Please Select Your Task Category" });
@@ -147,6 +153,8 @@ function AddTask() {
 
     return (
         <>
+            <h1 className="text-center text-5xl font-medium mt-8 mb-5">Make Your Todo List</h1>
+
             <div className="flex justify-center mt-10">
                 <div className="px-10 rounded-2xl shadow-gray-300 shadow-xl">
                     <form onSubmit={(e) => submitTask(e)}>
@@ -163,7 +171,7 @@ function AddTask() {
                             <option value="Other">Other</option>
                         </select> <br /><br />
                         <span className="text-red-600">{error.categoryError ? error.categoryError : ""} </span><br />
-                        <button type="submit" className="inline-block my-10 bg-blue-500 text-white rounded-md px-7 py-2 text-xl">{id === 0 ? "Add task" : "Update Task"}</button>
+                        <button type="submit" className="inline-block my-5 bg-blue-500 text-white rounded-md px-7 py-2 text-xl">{id === 0 ? "Add task" : "Update Task"}</button>
                     </form>
                 </div>
             </div>
@@ -171,7 +179,7 @@ function AddTask() {
                 {Object.keys(dd).map((category) => (
                     <div key={category} className="flex justify-center mt-12 flex-col">
                         {dd[category].map((task, index) => (
-                            <div key={index} className="m-2 text-center rounded-xl px-5 py-3 text-white flex items-center justify-between" style={{ backgroundColor: task.completed ? "green" : categoryColors[category] }}>
+                            <div key={index} className="m-2 text-center rounded-xl px-5 py-3 text-white flex items-center justify-between" style={{ background: task.completed ? "green" : categoryColors[category]}}>
                                 <div className="">
                                     <h2 className="text-xl font-normal text-start">Category :- {category}</h2>
                                     <h3 className="text-2xl font-semibold text-start">Task: {task.task}</h3>

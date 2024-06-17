@@ -8,6 +8,10 @@ function Signup() {
     let [userData, setUserData] = useState({})
     let [error, setError] = useState({})
 
+    let validRegex = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
+
+
+
     let getInputValue = (e) => {
         let name = e.target.name;
         let value = e.target.value;
@@ -16,6 +20,9 @@ function Signup() {
             if (value === "") {
                 setError({ ...error, nameError: "Username id Required" });
             }
+            else if(value.length <2){
+                setError({...error,nameError :"Username is too Short "})
+            }
             else{
                 setError({...error,nameError:""})
             }
@@ -23,6 +30,9 @@ function Signup() {
         else if (name === "email") {
             if (value === "") {
                 setError({...error,emailError:"Email id Required"});
+            }
+            else if(!value.match(validRegex)){
+                setError({...error,emailError:"Please Enter Valid Email"})
             }
             else{
                 setError({...error,emailError:""})
@@ -43,8 +53,14 @@ function Signup() {
         if (userData.username === undefined) {
             setError({ ...error, nameError: "Username id Required" });
         }
+        else if(userData.username.length<2){
+            setError({...error,nameError:"Username is too Short"})
+        }
         else if (userData.email === undefined) {
             setError({...error,emailError:"Email id Required"});
+        }
+        else if(!userData.email.match(validRegex)){
+            setError({...error,emailError:"Please Enter Valid Email"})
         }
         else if (userData.pass === undefined) {
             setError({...error,passwordError:"Password id Required"});
@@ -70,15 +86,15 @@ function Signup() {
                         <h1 className="text-center text-3xl mb-10">Sign-Up Form</h1>
                         <label className="mb-3 inline-block text-xl">UserName :- </label>
                         <input className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" type="text" name="username" value={userData.username ? userData.username : ""} placeholder="Enter Your Username" onChange={(e) => getInputValue(e)} /><br /><br />
-                        <span className="text-red-500">{error.nameError ? error.nameError : ""}</span> <br />
+                        <span className="text-red-600">{error.nameError ? error.nameError : ""}</span> <br />
                         <label className="mb-3 inline-block text-xl">Email :- </label>
                         <input className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" type="text" name="email" value={userData.email ? userData.email : ""} placeholder="Enter Your Email" onChange={(e) => getInputValue(e)} /><br /><br />
-                        <span className="text-red-500">{error.emailError? error.emailError : ""}</span> <br />
+                        <span className="text-red-600">{error.emailError? error.emailError : ""}</span> <br />
                         <label className="mb-3 inline-block text-xl">Password :- </label>
                         <input className="border-2 w-full pe-28 ps-3 py-2 rounded-md outline-none border-slate-600" type="text" name="pass" value={userData.pass ? userData.pass : ""} placeholder="Enter Your Password" onChange={(e) => getInputValue(e)} /><br /><br />
-                        <span className="text-red-500">{error.passwordError? error.passwordError : ""}</span> <br />
+                        <span className="text-red-600">{error.passwordError? error.passwordError : ""}</span> <br />
                         <button type="submit" className="inline-block my-10 bg-blue-500 text-white rounded-md px-7 py-2 text-xl">Sign-Up</button>
-                        <Link to="/login" className="inline-block my-10 ms-8 bg-blue-500 text-white rounded-md px-7 py-2 text-xl">Login</Link>
+                        <Link to="/login" className="inline-block my-5 ms-8 bg-blue-500 text-white rounded-md px-7 py-2 text-xl">Login</Link>
                     </form>
                 </div>
             </div>

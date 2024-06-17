@@ -20,9 +20,6 @@ function Navbar() {
                                     <Link to={"/view"} style={{ display: "inline-block", marginLeft: "18px" }}>View</Link>
                                 </li>
                                 <li>
-                                    <Link to={"/contact"} style={{ display: "inline-block", marginLeft: "18px" }}>Contact</Link>
-                                </li>
-                                <li>
                                     <Link to={"/signup"} style={{ display: "inline-block", marginLeft: "18px" }}>SignUp</Link>
                                 </li>
                                 <li>

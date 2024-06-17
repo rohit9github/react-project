@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import { FaCheckCircle } from "react-icons/fa";
 
 function ViewCompletedTask() {
 
@@ -29,10 +29,15 @@ function ViewCompletedTask() {
                 {completedTasks.map((v, index) => {
                     if (v.completed === true) {
                         return (
-                            <div key={index} style={{  marginTop: "50px" }}>
-                                <div className="text-white text-center m-2 px-6 rounded-xl py-3" style={{backgroundColor:"#41B06E" }}>
-                                    <h2 className="text-xl font-medium text-start">Category : {v.category}</h2>
-                                    <h3 className="text-2xl font-semibold text-start">Task : {v.task}</h3>
+                            <div key={index} className="mt-6">
+                                <div className="text-white text-center m-2 px-6 rounded-xl py-3 flex items-center justify-between" style={{ backgroundColor: "#41B06E" }}>
+                                    <div>
+                                        <h2 className="text-xl font-medium text-start">Category : {v.category}</h2>
+                                        <h3 className="text-2xl font-semibold text-start">Task : {v.task}</h3>
+                                    </div>
+                                    <div>
+                                        <span className="text-3xl"><FaCheckCircle /></span>
+                                    </div>
                                 </div>
                             </div>
                         )

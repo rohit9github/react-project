@@ -8,6 +8,8 @@ function Login() {
     let [loginData, setLoginData] = useState({});
     let [error, setError] = useState({});
     let navigate = useNavigate();
+    let decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 
     let handleValue = (e) => {
@@ -18,6 +20,9 @@ function Login() {
             if(value === ""){
                 setError({...error,emailError:"Email is Required"});
             }
+            else if(!value.match(mailformat)){
+                setError({...error,emailError:"Please Enter Valid Email"})
+            }
             else{
                 setError({...error,emailError:""});
             }
@@ -25,6 +30,9 @@ function Login() {
         else if(name === "pass"){
             if(value === ""){
                 setError({...error,passError:"Password is Required"});
+            }
+            else if(!value.match(decimal)){
+                setError({...error ,passError :"8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character"})
             }
             else{
                 setError({...error,passError:""});
@@ -39,9 +47,14 @@ function Login() {
         if (loginData.email === undefined){
             setError({...error,emailError:"Email is Required"});
         }
-        
+        else if(!loginData.email.match(mailformat)){
+            setError({...error,emailError:"Please Enter Valid Email"})
+        }  
         else if(loginData.pass === undefined){
             setError({...error,passError:"Password is Required"});
+        }
+        else if(!loginData.pass.match(decimal)){
+            setError({...error,passError:"8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character"})
         }
         else{
             if (getUser.email === loginData.email && getUser.pass === loginData.pass) {

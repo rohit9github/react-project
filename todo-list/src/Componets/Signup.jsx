@@ -8,10 +8,11 @@ function Signup() {
     let [userData, setUserData] = useState({})
     let [error, setError] = useState({})
 
-    let validRegex = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
-
-
-
+    let decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    
+    
+    
     let getInputValue = (e) => {
         let name = e.target.name;
         let value = e.target.value;
@@ -31,7 +32,7 @@ function Signup() {
             if (value === "") {
                 setError({...error,emailError:"Email id Required"});
             }
-            else if(!value.match(validRegex)){
+            else if(!value.match(mailformat)){
                 setError({...error,emailError:"Please Enter Valid Email"})
             }
             else{
@@ -41,6 +42,9 @@ function Signup() {
         else if (name === "pass") {
             if (value === "") {
                 setError({...error,passwordError:"Password id Required"});
+            }
+            else if(!value.match(decimal)){
+                setError({...error ,passwordError :"8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character"})
             }
             else{
                 setError({...error,passwordError:""})
@@ -59,11 +63,14 @@ function Signup() {
         else if (userData.email === undefined) {
             setError({...error,emailError:"Email id Required"});
         }
-        else if(!userData.email.match(validRegex)){
+        else if(!userData.email.match(mailformat)){
             setError({...error,emailError:"Please Enter Valid Email"})
         }
         else if (userData.pass === undefined) {
             setError({...error,passwordError:"Password id Required"});
+        }
+        else if(!userData.pass.match(decimal)){
+            setError({...error,passwordError:"8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character"})
         }
         else {
             localStorage.setItem("Userdata", JSON.stringify(userData));
@@ -73,8 +80,6 @@ function Signup() {
                 position: "top-center",
             })
         }
-
-
     }
 
     return (
